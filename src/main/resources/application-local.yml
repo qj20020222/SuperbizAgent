@@ -1,0 +1,14 @@
+# 纯本地自洽跑法（无 Prometheus / 无腾讯云 CLS MCP）
+# 启动方式: mvn spring-boot:run -Dspring-boot.run.profiles=local
+# 只覆盖差异项，其余继承 application.yml
+spring:
+  ai:
+    mcp:
+      client:
+        enabled: false   # 不连 mcp-api.tencent-cloud.com 的占位 SSE 端点
+
+prometheus:
+  mock-enabled: true     # 用 QueryMetricsTools 内置假告警
+
+cls:
+  mock-enabled: true     # 用 QueryLogsTools 内置假日志（与假告警交叉呼应）
